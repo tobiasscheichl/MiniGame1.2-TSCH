@@ -7,17 +7,22 @@ public class Arrow : MonoBehaviour
 
     private const string AXISVERTICAL = "Vertical";
     private float moveSpeed = 2.0f;
+    private Transform myTransform;
+    public ScoreData scoreData;
 
-
+    private void Start()
+    {
+        myTransform = gameObject.GetComponent<Transform>();
+    }
 
 
     private void Move()
     {
-        var deltaY = Input.GetAxis(AXISVERTICAL) * Time.deltaTime * moveSpeed;
-        var newPosY = Mathf.Clamp(transform.position.x + deltaY, -300f, 300f);
+        // var deltaY = Input.GetAxis(AXISVERTICAL) * Time.deltaTime * moveSpeed;
+        //var newPosY = Mathf.Clamp(transform.position.x + deltaY, -300f, 300f);
+        myTransform.position = new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z);
 
 
-     
     }
 
 
@@ -27,14 +32,13 @@ public class Arrow : MonoBehaviour
 
         if (collision.gameObject.name == "Player")
         {
-
-            transform.position +10f;
-            Debug.Log("score+" + transform.position);
+            myTransform.position = new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z);
+            Debug.Log("score+" + myTransform.position.y);
         }
         else if (collision.gameObject.name == "GedachteLinie")
         {
-            transform.position -10f;
-            Debug.Log("score-" + transform.position);
+            myTransform.position = new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z);
+            Debug.Log("score-" + myTransform.position.y);
         }
     }
 

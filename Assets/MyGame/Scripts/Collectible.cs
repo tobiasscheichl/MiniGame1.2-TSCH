@@ -6,6 +6,7 @@ using TMPro;
 public class Collectible : MonoBehaviour
 {
     private int score= 0;
+    public ScoreData myData;
     public TextMeshProUGUI pointsScore;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,13 +17,15 @@ public class Collectible : MonoBehaviour
         {
             score += 5;
             Debug.Log("score+" + score);
-            pointsScore.text = score.ToString();
+            myData.myScore = score;
+            //pointsScore.text = score.ToString();
         }
         else if (collision.gameObject.name == "GedachteLinie")
         {
             score -= 10;
             Debug.Log("score-" + score);
-            pointsScore.text = score.ToString();
+            myData.myScore = score;
+            //pointsScore.text = score.ToString();
         }
     }
     
